@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//ф-ции для вывода : dump(),dd() - выводит и убирает все остальное,ddd() - ultimate)
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('hello',[SiteController::class, 'index']);
