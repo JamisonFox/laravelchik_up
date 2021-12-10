@@ -24,21 +24,21 @@ Route::get('/store', function () {
     return view('store');
 });
 
-Route::get('/product', function () {
-    return view('product');
-});
+//Route::get('product/product', function () {
+//    return view('product/product');
+//});
 
-Route::get('/product', function () {
-    $category = new Category();
+Route::get('/product/77777777', function () {
+  //  $category = new Category();
    // $category->name = 'TV2';
    // $category->name = 'Laptop';
-    $category->save();
+   // $category->save();
 
-//    $data = [
-//        'name' => 'Laptop2'
-//    ];
-//    $category = Category::create($data);
-//    return view('product');
+  //  $data = [
+  //      'name' => 'Laptop2'
+  //  ];
+   // $category = Category::create($data);
+   // return view('product');
 });
 
 Route::get('hello',[SiteController::class, 'index']);
@@ -46,3 +46,7 @@ Route::get('hello',[SiteController::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('show-form', [App\Http\Controllers\FormController::class, 'showForm'])->name('showForm');;
+Route::post('show-form', [App\Http\Controllers\FormController::class, 'postForm'])->name('postForm');
+
+Route::get('product/{id?}',[\App\Http\Controllers\ProductController::class,'index'])->name('show-product');
