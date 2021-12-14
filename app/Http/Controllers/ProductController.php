@@ -16,4 +16,13 @@ class ProductController extends Controller
             'products' => $products
         ]);
     }
+    public function catalog() {
+        //$products = Product::all();
+        $offset = 9;
+        //$offset = ($page - 1) * 10;
+        $products = Product::query()->where('status',1)->paginate(9);
+        return view('product.store', [
+            'products' => $products
+        ]);
+    }
 }

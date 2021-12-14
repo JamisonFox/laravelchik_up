@@ -20,9 +20,9 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/store', function () {
-    return view('store');
-});
+//Route::get('/store', function () {
+//    return view('store');
+//});
 
 //Route::get('product/product', function () {
 //    return view('product/product');
@@ -50,3 +50,4 @@ Route::get('show-form', [App\Http\Controllers\FormController::class, 'showForm']
 Route::post('show-form', [App\Http\Controllers\FormController::class, 'postForm'])->name('postForm');
 
 Route::get('product/{id?}',[\App\Http\Controllers\ProductController::class,'index'])->name('show-product');
+Route::get('catalog', [\App\Http\Controllers\ProductController::class, 'catalog'])->name('catalog');
