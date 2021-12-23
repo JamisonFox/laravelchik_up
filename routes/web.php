@@ -45,9 +45,34 @@ Route::get('hello',[SiteController::class, 'index']);
 
 Auth::routes();
 
+Route::get('admin', function () {
+    return view('admin.index');
+});
+//Route::resources([
+//    'brand' => \App\Http\Controllers\Admin\BrandController::class,
+//    'category' => \App\Http\Controllers\Admin\CategoryController::class,
+//    'product' => \App\Http\Controllers\Admin\ProductController::class
+//]);
+
+Route::prefix( 'admin')->name('admin.')->group(function() {
+    Route::resources([
+        'brand' => \App\Http\Controllers\Admin\BrandController::class,
+        'category' => \App\Http\Controllers\Admin\CategoryController::class,
+        'product' => \App\Http\Controllers\Admin\ProductController::class
+    ]);
+});
+//});
+//
+//});
+
+//Route::resource('brand', \App\Http\Controllers\Admin\BrandController::class)->except(['destroy']);
+//Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
+//Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('show-form', [App\Http\Controllers\FormController::class, 'showForm'])->name('showForm');;
 Route::post('show-form', [App\Http\Controllers\FormController::class, 'postForm'])->name('postForm');
 
 Route::get('product/{id?}',[\App\Http\Controllers\ProductController::class,'index'])->name('show-product');
-Route::get('catalog', [\App\Http\Controllers\ProductController::class, 'catalog'])->name('catalog');
+Route::get('catalog', [\App\Http\Controllers\ProductController::class, 'catalog',])->name('catalog');
+//Route::get('catalog', [\App\Http\Controllers\ProductController::class, 'catalog'])->name('');
