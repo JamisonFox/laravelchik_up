@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\SendEmailCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -16,12 +17,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        //$schedule->command('command:test')->everyMinute();
+        $schedule->command('command.email')->dailyAt('17:30')->timezone('Europe/Minsk');
     }
 
     /**
      * Register the commands for the application.
-     *
-     * @return void
+     *     * @return void
      */
     protected function commands()
     {
