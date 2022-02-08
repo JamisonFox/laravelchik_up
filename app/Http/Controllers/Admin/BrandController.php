@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
 {
@@ -40,8 +41,11 @@ class BrandController extends Controller
      */
     public function store(CreateBrandRequest $request)
     {
-        //$data = $request->all();
+      //  $data = $request->all();
+        $file = $request->file('logo');
+        dump($file->storeAs('newfolder','newFile.txt','public'));
 
+        dd(Storage::disk('public')->putFileAs('ololol',$file,'filename.png'));
         //dd($data);
         $brand = Brand::create($request->all());
         dd($brand);
@@ -78,7 +82,7 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Brand $brand)
+    public function update(CreateBrandRequest $request,Brand $brand)
     {
         $data = $request->all();
         $brand->fill($request->all());
